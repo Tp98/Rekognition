@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% load mathfilters %}
+
+{% block title %} User {% endblock %}
+
+{% block content%}
+		<h1>{{ user.firstname }} {{ user.lastname }}</h1>
+		
+			FirstName : {{ user.firstname }} <br/>
+			LastName : {{ user.lastname }} <br/>
+			Time of Arrival : {{ user.timeOfArrival}} <br/>
+			Time of Leaving : {{ user.timeOfLeaving}} <br/>
+			{% if user.onBuilding %}
+				Time of Work : calculation... <br/>
+			{% else %}
+				Time of Work : {{ user.timeOfLeaving|sub:user.timeOfArrival}} <br/>
+			{% endif %}
+			On building ? : {{user.onBuilding}}<br/>
+			<img src={{user.image.url}}  width="150" height="200"/>
+			
+		 <a href="{% url 'uploadImage' user.pk %}">Upload Image</a>
+{% endblock %}

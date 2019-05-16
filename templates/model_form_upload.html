@@ -1,0 +1,16 @@
+{% extends 'base.html' %}	
+
+{% block title %} Update user image {% endblock %}
+
+{% block content %}
+	<h1>Upload Image</h1>
+	<p>You will modified image profile for {{ user.firstname }} {{user.lastname }}</p> <br>
+	<p>The actual image is </p>
+	<img src={{user.image.url}}  width="150" height="200"/>
+	
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Upload</button>
+	</form>
+{% endblock %}
